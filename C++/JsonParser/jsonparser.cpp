@@ -27,7 +27,7 @@ int main(){
 
     Person armen;
     
-    std::cout<<str<<std::endl;
+    std::cout<< "Json file \n" << str <<std::endl;
 
     return 0;
 }
