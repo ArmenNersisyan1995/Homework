@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Karen",
+        "age": 24,
+        "cars": "Mercedes"
+    },
+    {
+        "name": "Armen",
+        "age": 24,
+        "cars": "Audi"
+    },
+    {
+        "name": "Peto",
+        "age": 24,
+        "cars": "BMW"
+    },
+    {
+        "name": "Benik",
+        "age": 24,
+        "cars": "Haci Avot"
+    }
+]
