@@ -127,7 +127,7 @@ std::string get_attributs (std::string object) {
         }
         remove_parentheses(key);
         remove_parentheses(value);
-        std::cout<< "Key = " << key << " Value = " << value <<std::endl;
+        std::cout<< "Key = " << key << " | Value = " << value <<std::endl;
     }
 }
 
@@ -149,7 +149,7 @@ int main() {
     }
 
     for(int i = 0; i < 4; ++i) {
-        std::cout<< get_attributs(json_array[i]) << "\n\n" <<std::endl;
+        std::cout<< "\n" << get_attributs(json_array[i]) << "\n" <<std::endl;
     }
     
     return 0;
