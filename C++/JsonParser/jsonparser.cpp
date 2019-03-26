@@ -66,8 +66,9 @@ std::string get_firs_object (std::string json) {
             for(int j = i + 1; j < json.length(); ++j) {
                 if(json[j] == '}') {
                     return object;
+                } else if (json[j] != ' ') {
+                    object = object + json[j];
                 }
-                object = object + json[j];
             }
         }
     }
