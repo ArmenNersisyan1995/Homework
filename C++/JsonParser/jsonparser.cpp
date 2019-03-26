@@ -74,6 +74,16 @@ std::string get_firs_object (std::string json) {
     }
 }
 
+void remove_parentheses (std::string& text) {
+    std::string newText = "";
+    for(int i = 0; i < text.length(); ++i) {
+        if(text[i] != '"') {
+            newText = newText + text[i];
+        }
+    }
+    text = newText;
+}
+
 void remove_first_object (std::string& json) {
     std::string newJson = "[";
     for(int i = 1; i < json.length(); ++i) {
@@ -87,7 +97,42 @@ void remove_first_object (std::string& json) {
     }
 }
 
-int main(){
+std::string get_attributs (std::string object) {
+    
+    std::string rows[3] = { "","","" };
+    int start = 0;
+    
+    for(int i = 0; i < 3; ++i) {
+        for(int j = start; j < object.length(); ++j) {
+            if(object[j] != ',') {
+                rows[i] = rows[i] + object[j];    
+            } else {
+                start = j + 1;
+                break;
+            }
+        }
+
+        std::string key = "";
+        std::string value = "";
+        int x = 1;
+
+        while(rows[i][x] != ':'){
+            key = key + rows[i][x];
+            ++x;
+        }
+        ++x;
+        while(x < rows[i].length()){
+            value = value + rows[i][x];
+            ++x;
+        }
+        remove_parentheses(key);
+        remove_parentheses(value);
+        std::cout<< "Key = " << key << " Value = " << value <<std::endl;
+    }
+}
+
+int main() {
+
     std::ifstream t("file.json");
     std::string json((std::istreambuf_iterator<char>(t)),
     std::istreambuf_iterator<char>());
@@ -100,8 +145,12 @@ int main(){
     }
     
     for(int i = 0; i < 4; ++i) {
-        std::cout<< json_array[i] <<std::endl;
+        // std::cout<< json_array[i] <<std::endl;
     }
 
+    for(int i = 0; i < 4; ++i) {
+        std::cout<< get_attributs(json_array[i]) << "\n\n" <<std::endl;
+    }
+    
     return 0;
 }
