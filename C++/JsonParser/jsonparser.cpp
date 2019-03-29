@@ -52,6 +52,7 @@ class Person {
     }
 
     void print (void) {
+        std::cout<< "\n====================================\n" <<std::endl;
         std::cout<< "Name : " << this -> name <<std::endl;
         std::cout<< "Age : " << this -> age <<std::endl;
         std::cout<< "Car : " << this -> car <<std::endl;
@@ -97,11 +98,17 @@ void remove_first_object (std::string& json) {
     }
 }
 
-std::string get_attributs (std::string object) {
-    
+int string_value_of (std::string text) {
+    int number = text[0] - '0';
+    for(int i = 1; i < text.length(); ++i ) {
+        number = (number * 10) + (text[i] - '0');
+    }
+    return number;
+}
+
+std::string get_attributs (std::string object , Person& person) {
     std::string rows[3] = { "","","" };
     int start = 0;
-    
     for(int i = 0; i < 3; ++i) {
         for(int j = start; j < object.length(); ++j) {
             if(object[j] != ',') {
@@ -111,7 +118,6 @@ std::string get_attributs (std::string object) {
                 break;
             }
         }
-
         std::string key = "";
         std::string value = "";
         int x = 1;
@@ -127,7 +133,14 @@ std::string get_attributs (std::string object) {
         }
         remove_parentheses(key);
         remove_parentheses(value);
-        std::cout<< "Key = " << key << " | Value = " << value <<std::endl;
+        // std::cout<< "Key = " << key << " | Value = " << value <<std::endl;
+        if (key == "name") {
+            person.set_name(value);
+        } else if (key == "age"){
+            person.set_age(string_value_of(value));
+        } else if(key == "car"){
+            person.set_car(value);
+        }
     }
 }
 
@@ -137,20 +150,18 @@ int main() {
     std::string json((std::istreambuf_iterator<char>(t)),
     std::istreambuf_iterator<char>());
     
-    std::string json_array [4];
+    Person* persons [4];
 
     for(int i = 0; i < 4; ++i) {
-        json_array[i] = get_firs_object(json);
+        persons[i] = new Person();
+        get_attributs(get_firs_object(json) , *(persons[i]));
         remove_first_object(json);
     }
-    
-    for(int i = 0; i < 4; ++i) {
-        // std::cout<< json_array[i] <<std::endl;
-    }
 
     for(int i = 0; i < 4; ++i) {
-        std::cout<< "\n" << get_attributs(json_array[i]) << "\n" <<std::endl;
+        persons[i] -> print();
+        delete persons[i];
     }
-    
+
     return 0;
 }
