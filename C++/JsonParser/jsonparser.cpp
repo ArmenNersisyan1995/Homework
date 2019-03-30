@@ -48,7 +48,7 @@ class Person {
     }
 
     ~Person (void) {
-        // std::cout<<"Person destructor called" <<std::endl;
+        // std::cout<<"Person destructor" <<std::endl;
     }
 
     void print (void) {
