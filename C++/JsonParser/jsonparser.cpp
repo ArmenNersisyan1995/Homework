@@ -98,7 +98,7 @@ void remove_first_object (std::string& json) {
     }
 }
 
-int string_value_of (std::string text) {
+int string_to_int (std::string text) {
     int number = text[0] - '0';
     for(int i = 1; i < text.length(); ++i ) {
         number = (number * 10) + (text[i] - '0');
@@ -137,7 +137,7 @@ std::string get_attributs (std::string object , Person& person) {
         if (key == "name") {
             person.set_name(value);
         } else if (key == "age"){
-            person.set_age(string_value_of(value));
+            person.set_age(string_to_int(value));
         } else if(key == "cars"){
             person.set_car(value);
         }
