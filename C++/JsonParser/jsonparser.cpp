@@ -133,7 +133,7 @@ std::string get_attributs (std::string object , Person& person) {
         }
         remove_parentheses(key);
         remove_parentheses(value);
-        std::cout<< "Key = " << key << " | Value = " << value <<std::endl;
+        // std::cout<< "Key = " << key << " | Value = " << value <<std::endl;
         if (key == "name") {
             person.set_name(value);
         } else if (key == "age"){
