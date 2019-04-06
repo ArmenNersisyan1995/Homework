@@ -23,8 +23,8 @@ int mecbazm(int a, int b, int c) {
 		return 1;
 	}
 	if(a <= 0 || b <= 0 || c <= 0){
-		 std::cout<<"tvyal tveri sharq@ chi karox unenal @ndhanur bazmapatik"<<std::endl;
-		 return 0;
+		std::cout<<"tvyal tveri sharq@ chi karox unenal @ndhanur bazmapatik"<<std::endl;
+		return 0;
 	}
 	int max = a;
 	int arr[3] = {a,b,c};

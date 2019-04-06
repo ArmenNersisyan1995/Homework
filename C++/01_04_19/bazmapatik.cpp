@@ -5,7 +5,7 @@ int mecbazm(int a, int b, int c);
 int main(){
 
 	int a,b,c;
-	std::cout<<"nermucel 3 bnakan tiv"<<std::endl;
+	std::cout<<"nermucel 453 bnakan tiv"<<std::endl;
 	std::cout<<" a-> ";
 	std::cin>> a;
 	std::cout<<" b-> ";
@@ -18,6 +18,7 @@ int main(){
 }
 
 int mecbazm(int a, int b, int c){
+
 	if(a == 0 && b == 0 && c == 0){
 		std::cout<<"a,b,c tveri amenamec @ndhanur bazmapatikn e -> 0"<<std::endl;
 		return 1;
