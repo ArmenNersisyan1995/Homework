@@ -1,7 +1,7 @@
 #include<iostream>
 
 void showarr(char arr[12][12]);
-char  move (char arr[12][12],char &,int &, int &);
+void  move (char arr[12][12],char &,int &, int &);
 
 int main(){
 
@@ -16,19 +16,16 @@ char arr[12][12] = {
         '#',' ',' ',' ','#',' ',' ',' ',' ',' ',' ','#',
         '0',' ','#',' ','#',' ','#','#','#','#',' ','#',
         '#','#','#',' ','#',' ',' ',' ',' ','#',' ','#',
-        '#',' ',' ',' ',' ','#','#','#',' ','#',' ',' ', //<--- kety ete poxenq # nshanov
+        '#',' ',' ',' ',' ','#','#','#',' ','#',' ','#', //<--- kety ete poxenq # nshanov
         '#','#','#','#',' ','#',' ','#',' ','#',' ','#', //     obyekty elq chgtnelov het kga ir 
         '#',' ',' ','#',' ','#',' ','#',' ','#',' ','#', //     skzbnakan vichak. cragiry kasi
         '#','#',' ','#',' ','#',' ','#',' ','#',' ','#', //     vor eql chka
         '#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ','#',
         '#','#','#','#','#','#',' ','#','#','#',' ','#',
         '#',' ',' ',' ',' ',' ',' ','#',' ',' ',' ','#',
-        '#','#','#','#','#','#','#','#','#','#','#','#'
+        '#','#','#','#',' ','#','#','#','#','#','#','#'
     };
-showarr(arr);
-
-move(arr,uxutyun,i,j);
-showarr(arr);
+	move(arr,uxutyun,i,j);
 
 	return 0;
 }
@@ -42,79 +39,121 @@ void showarr(char arr[12][12]) {
 	}      
 }
 
-char  move (char arr[12][12],char &uxutyun,int &i, int &j){
-std::cout<<"i = "<<i<<", j = "<<j<<std::endl;
-	if(arr[i][11] == ' ' || arr[11][j] == ' ' || arr[0][j] == ' ' || arr[i][0] == ' '){
-		if(arr[i][0] == ' ' && i == 2){
-			std::cout<<"elq chgtnelov veradarcav zkzbnakan vi&ak"<<std::endl;
-			return 1;
-		}//else{
-			//std::cout<<"i = "<<i<<", j = "<<j<<std::endl;
-			//std::cout<<"ketum durs ekav labirintic"<<std::endl;
-			//return 2;
-		 	//}
-	}
-	if(arr[i][j + 1] == ' '){
-		++j;
-		arr[i][j] = '0';
-		uxutyun = '>';
-		move(arr,uxutyun,i,j);
-	}else 
-		if(arr[i][j + 1] == '#'){
-			if(arr[i+1][j] == ' '){
-			++i;
-			arr[i][j] = '0';
-    	    uxutyun = 'v';
-	        move(arr,uxutyun,i,j);
+void  move (char arr[12][12],char &uxutyun,int &i, int &j){
+
+	if(arr[i][j] == '0' &&  j == 11  || i == 11 || i == 0){
+		std::cout<<"i = "<<i<<", j = "<<j<<std::endl;
+		std::cout<<"ketum durs ekav labirintic"<<std::endl;
+		return;
+		
+	}//else
+		//if(arr[i][j] == '0' && i == 2 && j ==0){
+		//	std::cout<<"elq chka"<<std::endl;
+		//	return;
+		//}
+				
+	switch(uxutyun)
+	{
+	case '>':
+			if(arr[i - 1][j] == ' '){
+                uxutyun = '^';
+                --i;
+                arr[i][j] = '0';
+				arr[i+1][j] = ' ';  
+			}else
+				if(arr[i+1][j] == ' '){
+					uxutyun = 'v';
+					++i;
+					arr[i][j] = '0';
+					arr[i-1][j] = ' ';
+			}else
+				if(arr[i][j+1] == ' '){
+					uxutyun = '>';
+					++j;
+					arr[i][j] = '0';
+					arr[i][j-1] = ' ';
+			}else{
+					uxutyun = '<';
+				 }	
+			break;
+	case '^':
+			if(arr[i][j-1] == ' '){
+				uxutyun = '<';
+				--j;
+				arr[i][j] = '0';
+				arr[i][j+1] = ' ';
+			}else
+				if(arr[i][j+1] == ' '){
+					uxutyun = '>';
+					++j;
+					arr[i][j] = '0';
+					arr[i][j-1] = ' ';
 			}else
 				if(arr[i-1][j] == ' '){
+					uxutyun = '^';	
 					--i;
 					arr[i][j] = '0';
-		            uxutyun = '^';
-        		    move(arr,uxutyun,i,j);
+					arr[i+1][j] = ' ';
+			 }else{
+					uxutyun = 'v';
+				  }						
 
-				}else
-					if(arr[i-1][j] == '#' && arr[i][j+1] == '#'){
-						while(arr[i][j-1] == ' ') {
-						--j;
-						arr[i][j] = '0';
-                    	uxutyun = '<';
-	                   	move(arr,uxutyun,i,j);
-						}
-					
-					}	
-					
-
-		 }
-	
-
-	    
+			break;
+	case '<':
+			if(arr[i+1][j] == ' '){
+				uxutyun = 'v';
+				++i;
+				arr[i][j] = '0';
+				arr[i-1][j] = ' ';
+			}else
+				if(arr[i-1][j] == ' '){
+					uxutyun = '^';
+					--i;
+					arr[i][j] = '0';
+					arr[i+1][j] = ' ';
+			}else
+				if(arr[i][j-1] == ' '){
+					uxutyun = '<';
+					--j;
+					arr[i][j] = '0';
+					arr[i][j+1] = ' ';
+			}else{
+					uxutyun = '>';
+				 }
+			 
+            break;
+	case 'v':
+			if(arr[i][j + 1] == ' '){
+				uxutyun = '>';
+				++j;
+				arr[i][j] = '0';
+				arr[i][j-1] = ' ';
+			}else
+				if(arr[i][j-1] == ' '){
+					uxutyun = '<';
+					--j;
+					arr[i][j] = '0';
+					arr[i][j+1] = ' ';
+			}else
+				if(arr[i+1][j] == ' '){
+					uxutyun = 'v';
+					++i;
+					arr[i][j] = '0';
+					arr[i-1][j] = ' ';
+			}else{
+					uxutyun = '^';
+				 }
 			
+			break;
 
-
-		
-	//switch(uxutyun)
-	//{
-	//	case '>':
-	//			std::cout<<"uxutyun@ aj  "<<uxutyun<<std::endl;
-	//			std::cout<<"i = "<<i<<", j = "<<j<<std::endl;
-	//			break;
-	//	case '<':
-	//			std::cout<<"uxutyun@ dzax  "<<uxutyun<<std::endl;
-      //          std::cout<<"i = "<<i<<", j = "<<j<<std::endl;
-		//		break;
-		//case '^':
-          //      std::cout<<"uxutyun@ verev "<<uxutyun<<std::endl;
-            //    std::cout<<"i = "<<i<<", j = "<<j<<std::endl;
-              //  break;
-		//case 'v':
-         //       std::cout<<"uxutyun@ nerqev  "<<uxutyun<<std::endl;
-         //       std::cout<<"i = "<<i<<", j = "<<j<<std::endl;
-         //       break;
-
-	//}
-}
-	
+	}
+	arr[2][0] = 's';
+	std::cout<<" uxutyuny "<< uxutyun <<std::endl;
+	std::cout<<"i = "<<i<<", j = "<<j<<std::endl;
+	showarr(arr);
+	std::cin.ignore();
+	move (arr,uxutyun,i,j);
+}	
 
 
 
