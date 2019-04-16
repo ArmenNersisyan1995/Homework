@@ -1,4 +1,4 @@
-include<iostream>
+#include<iostream>
 
 void showstring (std::string str,int max_length,int begin,int end,int chap);
 void print (std::string str, int begin, int end,int chap);
