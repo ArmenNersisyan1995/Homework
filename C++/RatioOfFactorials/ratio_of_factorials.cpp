@@ -20,6 +20,8 @@ int main () {
     std::cin>> a;
     std::cin>> b;
     std::cout<< fact(a, b) <<std::endl;
+
+        std::cout<< "Test" <<std::endl;
     
     return 0;
 }
