@@ -31,6 +31,8 @@ class Person {
 int main() {
     Person  person;
     std::cout<<"a = " << person.get_a() <<std::endl;
+    
+    //before
     std::cout<<"b = " << person.get_b() <<std::endl;
 
 
@@ -41,6 +43,11 @@ int main() {
     }
     
     std::cout<< *(int *)(ptr + 4) <<std::endl;
+    *(int *)(ptr + 4) = 30;
+    
+
+    //after
+    std::cout<< "b = " << person.get_b() <<std::endl;
     
     return 0;
 }
