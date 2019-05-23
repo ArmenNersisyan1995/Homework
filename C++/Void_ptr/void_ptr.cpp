@@ -37,15 +37,14 @@ int main() {
 
 
     void* ptr = &person;
-    
-    if(ptr + 4 == person.get_addres_b()) {
-        std::cout<< "addreses b is equal --> ptr + 4" <<std::endl;
+    for(int i = 0 ; ; ++i) {
+        if( *(int*)(ptr + i) == person.get_b()) {
+            std::cout<< "addreses b is --> " << (int*)(ptr + i) <<std::endl;
+            *(int *)(ptr + i) = 30;
+            break;
+        }
     }
     
-    std::cout<< *(int *)(ptr + 4) <<std::endl;
-    *(int *)(ptr + 4) = 30;
-    
-
     //after
     std::cout<< "b = " << person.get_b() <<std::endl;
     
