@@ -2,13 +2,19 @@
 
 class Person {
     int a;
-    int b;
+    char b;
+    double c;
+    int d;
+    char e;
     
     public:
 
     Person() {
         this -> a = 10;
-        this -> b = 20;
+        this -> b = 'b';
+        this -> c = 14.5;
+        this -> d = 20;
+        this -> e = 'e';
 
     }
     ~Person() {
@@ -17,14 +23,14 @@ class Person {
     int get_a() {
         return this -> a;
     }
-    int get_b() {
-        return this -> b;
+    int get_d() {
+        return this -> d;
     }
     int* get_addres_a() {
         return &a;
     }
-    int* get_addres_b() {
-        return &b;
+    int* get_addres_d() {
+        return &d;
     }
 };
 
@@ -33,20 +39,20 @@ int main() {
     std::cout<<"a = " << person.get_a() <<std::endl;
     
     //before
-    std::cout<<"b = " << person.get_b() <<std::endl;
+    std::cout<<"d = " << person.get_d() <<std::endl;
 
 
     void* ptr = &person;
     for(int i = 0 ; ; ++i) {
-        if( *(int*)(ptr + i) == person.get_b()) {
-            std::cout<< "addreses b is --> " << (int*)(ptr + i) <<std::endl;
+        if( *(int*)(ptr + i) == person.get_d()) {
+            std::cout<< "addreses d is --> " << (int*)(ptr + i) <<std::endl;
             *(int *)(ptr + i) = 30;
             break;
         }
     }
     
     //after
-    std::cout<< "b = " << person.get_b() <<std::endl;
+    std::cout<< "d = " << person.get_d() <<std::endl;
     
     return 0;
 }
