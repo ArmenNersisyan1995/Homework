@@ -13,7 +13,7 @@ char uxutyun = '>';  // skzbnakan pahin obyekti gtnvelu vayry ev uxutyuny
 char arr[12][12] = {
 
         '#','#','#','#','#','#','#','#','#','#','#','#',
-        '#',' ',' ',' ','#',' ',' ',' ',' ',' ',' ','#',
+        '#',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',
         '0',' ','#',' ','#',' ','#','#','#','#',' ','#',
         '#','#','#',' ','#',' ',' ',' ',' ','#',' ','#',
         '#',' ',' ',' ',' ','#','#','#',' ','#',' ','#', //<--- kety ete poxenq # nshanov
@@ -41,7 +41,7 @@ void showarr(char arr[12][12]) {
 
 void  move (char arr[12][12],char &uxutyun,int &i, int &j) {
 
-	if(arr[i][j] == '0' &&  j == 11  || i == 11 || i == 0) {
+	if(arr[i][j] == '0'  &&  j == 11  || i == 11 || i == 0) {
 		std::cout<<"i = "<<i<<", j = "<<j<<std::endl;
 		std::cout<<"ketum durs ekav labirintic"<<std::endl;
 		return;
