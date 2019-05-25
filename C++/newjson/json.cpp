@@ -128,8 +128,8 @@ void clean_json (std::string& json) {
 
 int main(){
 	std::ifstream t("myjson.json");
-    std::string json((std::istreambuf_iterator<char>(t)),
-    std::istreambuf_iterator<char>());
+	std::string json((std::istreambuf_iterator<char>(t)),
+	std::istreambuf_iterator<char>());
 	int count_object = 0;
 
 	clean_json(json);
