@@ -58,9 +58,8 @@ std::string get_object(std::string myjson){
 			for(int j = i + 1; j < myjson.length();++j){
 				if(myjson[j] == '}'){
 					return newobject;
-				}else if(myjson[j] != ' ' && myjson[j] != '\n' && myjson[j] != '"'){
-					newobject = newobject + myjson[j];
-				}
+				} 
+				newobject = newobject + myjson[j];
 			}
 		}
 	}
@@ -96,48 +95,68 @@ std::string jsonobject_classobject(std::string obj,Json& objarr){
 				break;
 			}
 		}
-	int index_tox = 0;
-	std::string key = "";
-	std::string value = "";
-	while(rows[i][index_tox] != ':'){
-		key = key + rows[i][index_tox];
+		int index_tox = 0;
+		std::string key = "";
+		std::string value = "";
+		while(rows[i][index_tox] != ':'){
+			key = key + rows[i][index_tox];
+			++index_tox;
+		}
 		++index_tox;
-	}
-	++index_tox;
-	while(index_tox < rows[i].length()){
-		value = value + rows[i][index_tox];
-	}
-	std::cout<<key<<std::endl;
-	if(key == "name"){
-		objarr.set_name(value);
-	}else if(key == "age"){
-		objarr.set_age(string_cast_int(value));
-	}else if(key == "job"){
-		objarr.set_job(value);
-	}
+		while(index_tox < rows[i].length()){
+			value = value + rows[i][index_tox];
+		}
+		std::cout<<key<<std::endl;
+		if(key == "name"){
+			objarr.set_name(value);
+		}else if(key == "age"){
+			objarr.set_age(string_cast_int(value));
+		}else if(key == "job"){
+			objarr.set_job(value);
+		}
 	}
 }
+void clean_json (std::string& json) {
+	std::string new_json = "";
+	for (int i = 0; i < json.length(); i++) {
+		if(json[i] != ' ' && json[i] != '\n' && json[i] != '"' && json[i] != ']' && json[i] != '['){
+			new_json = new_json + json[i];
+		}
+	}
+	json = new_json;
+}
+
 int main(){
 	std::ifstream t("myjson.json");
     std::string json((std::istreambuf_iterator<char>(t)),
     std::istreambuf_iterator<char>());
 	int count_object = 0;
-	for(int i = 0; i < json.length();++i){
-		if(json[i] == '{'){
+
+
+	clean_json(json);
+	int a = 0;
+	// std::cout<< json.length() <<std::endl;
+
+	for(int i = 0; i < json.length(); ++i){
+		if(json[i] == '{') {
 			++count_object;
 		}
 	}
-
+	
 	Json* objectarr = new Json[count_object];
-	for(int i = 0; i < 3; ++i){
-		jsonobject_classobject(get_object(json),objectarr[i]);
+
+	
+	for(int i = 0; i < count_object; ++i){
+
+		std::cout<< get_object(json) <<std::endl;
+		// jsonobject_classobject(get_object(json),objectarr[i]);
 		delete_object(json);
 	}
 
-	for(int i = 0; i < 3; ++i){
-		objectarr[i].print();
-		delete []objectarr;
+	for(int i = 0; i < count_object; ++i){
+		// objectarr[i].print();
 	}
+	delete [] objectarr;
 
 	return 0;
 }
