@@ -132,7 +132,6 @@ int main(){
     std::istreambuf_iterator<char>());
 	int count_object = 0;
 
-
 	clean_json(json);
 	int a = 0;
 	// std::cout<< json.length() <<std::endl;
@@ -145,9 +144,7 @@ int main(){
 	
 	Json* objectarr = new Json[count_object];
 
-	
 	for(int i = 0; i < count_object; ++i){
-
 		std::cout<< get_object(json) <<std::endl;
 		// jsonobject_classobject(get_object(json),objectarr[i]);
 		delete_object(json);
@@ -157,6 +154,5 @@ int main(){
 		// objectarr[i].print();
 	}
 	delete [] objectarr;
-
 	return 0;
 }
