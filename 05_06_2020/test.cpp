@@ -3,6 +3,6 @@
 int main() {
 
 	std::cout<<"Hello Jenkins!!!\nAll OK" << std::endl;
-	mrganushi ... 23
+	mrganushi 
 	return 0;
 }
