@@ -15,5 +15,8 @@ queue.o: queue.hpp queue.cpp
 	$(CC) $(FLAG) -c queue.cpp
 
 .PHONY: clean run
+run: 
+	./list
+
 clean:
 	rm -rf *.o
