@@ -2,7 +2,6 @@
 
 int main() {
 
-	std::cout<<"Hello Jenkins!!!\nAll OK" << std::endl;
-	mrganushi 
+	std::cout<<"Hello Jenkins!!!\nAll OK" << std::endl; 
 	return 0;
 }
